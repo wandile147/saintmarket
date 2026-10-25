@@ -1,10 +1,85 @@
 'use strict';
 const features = {
-  discover: {number:'01 — DISCOVER', title:'Your next favourite.<br> Just around the corner.', description:'From a fresh set of nails to your next gym session, find businesses nearby. Explore the map, browse categories and get a feel for a place before you go.', points:['Explore businesses on the map','Find the services that fit your day','View profiles, reviews and opening times'], primary:'discover', primaryAlt:'Map of local businesses with category filters', secondary:'salon', secondaryAlt:'Local nail studio profile, reviews and services', word:'nearby.',tag:'A whole neighbourhood to discover'},
-  shop: {number:'02 — SHOP',title:'A little local.<br> A lot to love.',description:'Discover the products and services on your doorstep. Browse a local storefront, explore what’s available and keep your orders together.', points:['Browse products and services','Explore local business storefronts','See your orders in one place'],primary:'shop',primaryAlt:'Local storefront with a catalogue of products and services',secondary:'orders',secondaryAlt:'SaintMarket order overview',word:'good finds.',tag:'Your local favourites, all together'},
-  book: {number:'03 — BOOK',title:'Make a little<br> time for yourself.',description:'Book the services that make your week work. Choose a professional, explore available times and keep your appointment details close.',points:['Choose your professional','Find an available date and time','Get your booking confirmation'],primary:'booking',primaryAlt:'Booking calendar with available appointment times',secondary:'confirmed',secondaryAlt:'Successful appointment booking confirmation',word:'you time.',tag:'From a free slot to a confirmed plan'},
-  track: {number:'04 — TRACK',title:'From placed<br> to your place.',description:'Keep up with the things you’ve ordered. Follow delivery progress, check the details and get back to the rest of your day.',points:['View your order history','Follow the delivery route','Keep order details within reach'],primary:'tracking',primaryAlt:'Delivery route map and order tracking',secondary:'orders',secondaryAlt:'List of orders in the SaintMarket app',word:'on its way.',tag:'A clear view of what’s coming'},
-  connect: {number:'05 — CONNECT',title:'Your place.<br> Your kind of people.',description:'There’s more to your neighbourhood than an address. Discover community groups, join conversations and find a little more in common.',points:['Explore community groups','Discover conversations and topics','Keep in touch through messages'],primary:'community',primaryAlt:'Local community groups and conversation feed',secondary:'messages',secondaryAlt:'Messaging screen in SaintMarket',word:'together.',tag:'More connected to where you live'}
+  "discover": {
+    "number": "DISCOVER",
+    "title": "Your next favourite.<br> Just around the corner.",
+    "description": "From a fresh set of nails to your next fitness session, find approved businesses nearby. Browse services and prices, explore profiles and choose what fits your day.",
+    "points": [
+      "Explore businesses on the map",
+      "Find the services that fit your day",
+      "Explore services, prices and opening times"
+    ],
+    "primary": "discover",
+    "primaryAlt": "Design preview of nearby businesses with category filters",
+    "secondary": "salon",
+    "secondaryAlt": "Design preview of a local salon profile and its services",
+    "word": "nearby.",
+    "tag": "A whole neighbourhood to discover"
+  },
+  "enquire": {
+    "number": "ENQUIRE",
+    "title": "A question first.<br> A better fit.",
+    "description": "Ask about a service before making a plan. Get to know the business, check the details and decide what works for you.",
+    "points": [
+      "Explore a business’s services",
+      "Ask a question before booking",
+      "Keep the conversation close"
+    ],
+    "primary": "messages",
+    "primaryAlt": "Design preview of conversations in SaintMarket",
+    "secondary": "salon",
+    "secondaryAlt": "Design preview of a local service provider profile",
+    "word": "let’s talk.",
+    "tag": "From a question to your next plan"
+  },
+  "book": {
+    "number": "BOOK",
+    "title": "Make a little<br> time for yourself.",
+    "description": "Choose a professional, check availability and review the price and cancellation terms. Keep your appointment details together once you confirm.",
+    "points": [
+      "Choose a service and professional",
+      "Find an available date and time",
+      "Keep your booking confirmation"
+    ],
+    "primary": "booking",
+    "primaryAlt": "Design preview of a booking calendar and appointment times",
+    "secondary": "confirmed",
+    "secondaryAlt": "Design preview of an appointment confirmation",
+    "word": "you time.",
+    "tag": "From an available slot to a confirmed plan"
+  },
+  "pay": {
+    "number": "PAY",
+    "title": "The next step.<br> Taken care of.",
+    "description": "Complete payment for your booking and keep the transaction details alongside it. See what you have arranged and find the information you need when following up.",
+    "points": [
+      "Review the price before confirming",
+      "Pay for your booking in the app",
+      "Keep payment and booking records together"
+    ],
+    "primary": "confirmed",
+    "primaryAlt": "Design preview of a booking confirmation",
+    "secondary": "booking",
+    "secondaryAlt": "Design preview of an appointment calendar",
+    "word": "sorted.",
+    "tag": "Your booking details, all together"
+  },
+  "connect": {
+    "number": "CONNECT",
+    "title": "Your place.<br> Your kind of people.",
+    "description": "There’s more to your neighbourhood than an address. Find groups, share local recommendations and connect over the things you have in common.",
+    "points": [
+      "Explore community groups",
+      "Join neighbourhood conversations",
+      "Keep in touch through messages"
+    ],
+    "primary": "community",
+    "primaryAlt": "Design preview of community groups and conversations",
+    "secondary": "messages",
+    "secondaryAlt": "Design preview of messages in SaintMarket",
+    "word": "together.",
+    "tag": "More connected to where you live"
+  }
 };
 const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -62,7 +137,7 @@ tabs.forEach((tab,index)=>{
   const activeZones = new Set();
   const layers = new Map(zones.map(zone => [zone, Array.from(zone.querySelectorAll('.device, .floating-note, .art-sticker, .community-sticker, .delivery-label, .closing-spark'))]));
   const words = Array.from(document.querySelectorAll('[data-scroll-word]'));
-  const reveals = Array.from(document.querySelectorAll('.section-heading, .story, .stats > div, .business-grid article, .founding-card, .closing > .eyebrow, .closing > .button'));
+  const reveals = Array.from(document.querySelectorAll('.section-heading, .story, .stats > div, .business-grid article, .join-card, .closing > .eyebrow, .closing > .button'));
   let revealObserver;
   let zoneObserver;
   let frame = 0;
