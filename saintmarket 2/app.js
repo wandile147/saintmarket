@@ -100,7 +100,7 @@ function selectFeature(tab, moveFocus = false) {
   document.getElementById('feature-word').textContent=feature.word;
   document.getElementById('feature-tag').textContent=feature.tag;
   document.getElementById('feature-points').replaceChildren(...feature.points.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-  ['primary','secondary'].forEach(position=>{const img=document.getElementById('feature-'+position);img.src='assets/'+feature[position]+'-v5.webp';img.alt=feature[position+'Alt'];});
+  ['primary','secondary'].forEach(position=>{const img=document.getElementById('feature-'+position);img.src='assets/'+feature[position]+'-v9.webp';img.alt=feature[position+'Alt'];});
   if (canAnimate()) {
     document.querySelectorAll('.panel-copy, .panel-stage').forEach(element => {
       panelAnimations.get(element)?.cancel();
