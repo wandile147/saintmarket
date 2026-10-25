@@ -1,24 +1,11 @@
-SAINTMARKET — CORRECTED SCREENS + SCROLL MOTION
+SAINTMARKET — PUBLIC LAUNCH WEBSITE
 
-Open index.html in a browser to view the site. No installation or build step is required.
-Keep index.html, styles.css, app.js and the assets folder together.
-To replace an existing static site, upload the contents of the saintmarket folder to its web root using your hosting provider.
+Static HTML, CSS and JavaScript. No install or build step is required.
+Serve index.html, styles.css, app.js and assets/ together. Vercel uses this directory as its site root.
 
-Included updates:
-- Community reach and pilot statistics directly below the hero, with proximity messaging.
-- Corrected product screens from Saint App (5).zip, matched by screen content.
-- Layered phone hero with gentle scroll-driven parallax.
-- Staggered section and card reveals, phone movement and scroll-led text emphasis.
-- Feature-switch transitions and a slim page-progress indicator.
-- Smaller motion on mobile, a Pause motion control, and automatic reduced-motion support.
-- Five interactive, keyboard-accessible feature tabs.
-- Dedicated shopping, booking, delivery and community showcases.
-- Layouts for small phones, tablets and desktop screens.
-- Optimized WebP images, descriptive image text and reduced-motion support.
-- Original Tally signup destination and founding-business pilot terms.
+The public content introduces approved local businesses, enquiries, bookings, payments and community features to launch audiences. Estate facility booking is described as optional and estate-dependent.
+The website remains a product introduction and interest page; it is not the working marketplace application. Product screens are design previews.
 
-The product images are supplied design screens, including their original interface text and placeholder content. The website itself is a marketing page; the screenshots are not a working app.
+The existing Tally questionnaire at https://tally.so/r/VL27Kj remains the interest destination at the owner’s request. Its content is managed separately in Tally. No information is submitted by this website before a visitor chooses that external link.
 
-Validation: phone, tablet and desktop widths from 320 to 1440 pixels; corrected asset paths; feature tabs; scroll-driven transforms; pause/resume; reduced-motion initialization and preference changes; browser error log; local asset and anchor checks.
-
-This delivery is a local website package. It has not been deployed to a public domain.
+Interactive elements: five keyboard-accessible feature tabs, native FAQ disclosures, scroll motion controls and reduced-motion support. Existing product image assets are retained.
