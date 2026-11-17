@@ -2,83 +2,83 @@
 const features = {
   "discover": {
     "number": "DISCOVER",
-    "title": "Your next favourite.<br> Just around the corner.",
-    "description": "From a fresh set of nails to your next fitness session, find approved businesses nearby. Browse services and prices, explore profiles and choose what fits your day.",
+    "title": "Help residents<br> find your business.",
+    "description": "Give residents a place to discover your approved business. Your profile brings your services, prices and opening times into the estate marketplace.",
     "points": [
-      "Explore businesses on the map",
-      "Find the services that fit your day",
-      "Explore services, prices and opening times"
+      "Be found by nearby residents",
+      "Show what your business offers",
+      "Keep your business details together"
     ],
     "primary": "discover",
     "primaryAlt": "Design preview of nearby businesses with category filters",
     "secondary": "salon",
     "secondaryAlt": "Design preview of a local salon profile and its services",
     "word": "nearby.",
-    "tag": "A whole neighbourhood to discover"
+    "tag": "Your business, easier to find"
   },
   "enquire": {
     "number": "ENQUIRE",
-    "title": "A question first.<br> A better fit.",
-    "description": "Ask about a service before making a plan. Get to know the business, check the details and decide what works for you.",
+    "title": "Answer questions.<br> Help customers choose.",
+    "description": "Respond to questions about your services before a resident books. Keep the details and conversation close to your business profile.",
     "points": [
-      "Explore a business’s services",
-      "Ask a question before booking",
-      "Keep the conversation close"
+      "Explain your services",
+      "Answer questions before booking",
+      "Keep customer conversations together"
     ],
     "primary": "messages",
     "primaryAlt": "Design preview of conversations in SaintMarket",
     "secondary": "salon",
     "secondaryAlt": "Design preview of a local service provider profile",
     "word": "let’s talk.",
-    "tag": "From a question to your next plan"
+    "tag": "From an enquiry to a booking"
   },
   "book": {
     "number": "BOOK",
-    "title": "Make a little<br> time for yourself.",
-    "description": "Choose a professional, check availability and review the price and cancellation terms. Keep your appointment details together once you confirm.",
+    "title": "Turn availability<br> into appointments.",
+    "description": "Show residents your services, professionals and available times. Make prices and cancellation terms clear before customers confirm.",
     "points": [
-      "Choose a service and professional",
-      "Find an available date and time",
-      "Keep your booking confirmation"
+      "List your bookable services",
+      "Show available dates and times",
+      "Give customers a booking confirmation"
     ],
     "primary": "booking",
     "primaryAlt": "Design preview of a booking calendar and appointment times",
     "secondary": "confirmed",
     "secondaryAlt": "Design preview of an appointment confirmation",
-    "word": "you time.",
-    "tag": "From an available slot to a confirmed plan"
+    "word": "booked.",
+    "tag": "From an available slot to a booking"
   },
   "pay": {
     "number": "PAY",
-    "title": "The next step.<br> Taken care of.",
-    "description": "Complete payment for your booking and keep the transaction details alongside it. See what you have arranged and find the information you need when following up.",
+    "title": "Booking payments.<br> Clear from checkout.",
+    "description": "Let customers pay for their booking in the app and keep transaction details alongside it. The 5% commission is deducted automatically from eligible checkout sales.",
     "points": [
-      "Review the price before confirming",
-      "Pay for your booking in the app",
-      "Keep payment and booking records together"
+      "Show the price before confirmation",
+      "Accept booking payments in the app",
+      "Keep booking and payment records together"
     ],
     "primary": "confirmed",
     "primaryAlt": "Design preview of a booking confirmation",
     "secondary": "booking",
     "secondaryAlt": "Design preview of an appointment calendar",
     "word": "sorted.",
-    "tag": "Your booking details, all together"
+    "tag": "Clear records for you and your customers"
   },
   "connect": {
     "number": "CONNECT",
-    "title": "Your place.<br> Your kind of people.",
-    "description": "There’s more to your neighbourhood than an address. Find groups, share local recommendations and connect over the things you have in common.",
+    "title": "A connected estate.<br> A later launch.",
+    "description": "Community conversations are planned for an estate-approved wider launch. The initial pilot focuses on the marketplace.",
     "points": [
-      "Explore community groups",
-      "Join neighbourhood conversations",
-      "Keep in touch through messages"
+      "Planned after the initial pilot",
+      "Subject to estate approval",
+      "Introduced when moderation is ready"
     ],
     "primary": "community",
     "primaryAlt": "Design preview of community groups and conversations",
     "secondary": "messages",
     "secondaryAlt": "Design preview of messages in SaintMarket",
     "word": "together.",
-    "tag": "More connected to where you live"
+    "tag": "Planned for the wider launch"
   }
 };
 const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
@@ -241,4 +241,27 @@ tabs.forEach((tab,index)=>{
       { duration: 850, easing: 'cubic-bezier(.16,1,.3,1)' }
     );
   }
+})();
+
+// The deadline is inclusive of 1 January 2027 in South Africa (UTC+02:00).
+// This controls the offer display; qualifying submissions remain recorded in Tally.
+(() => {
+  const offerEndsAt = Date.parse('2027-01-02T00:00:00+02:00');
+  let expiryTimer;
+  function syncOffer() {
+    window.clearTimeout(expiryTimer);
+    const active = Date.now() < offerEndsAt;
+    document.querySelectorAll('[data-offer-active]').forEach(element => { element.hidden = !active; });
+    document.querySelectorAll('[data-offer-expired]').forEach(element => { element.hidden = active; });
+    const description = document.querySelector('meta[name="description"]');
+    if (!active && description) {
+      description.content = 'Reach Amsterdam Estate residents with your business. R199/month plus 5% commission and R0 setup. Register business interest, subject to estate approval.';
+    }
+    if (active) {
+      expiryTimer = window.setTimeout(syncOffer, Math.min(offerEndsAt - Date.now(), 86400000));
+    }
+  }
+  window.addEventListener('pageshow', syncOffer);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) syncOffer(); });
+  syncOffer();
 })();
